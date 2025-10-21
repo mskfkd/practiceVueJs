@@ -1,11 +1,29 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+
+const meatType = ref('カルビ')
+const meatPastLife = ref('')
+
+const pastLifeList = [
+  '飛ばないただの豚',
+  'Wi-Fiルーター',
+  'ミャク〇ャク様',
+  'カルビ界の救世主'
+]
+
+function anotherPastLife() {
+  const randomIndex = Math.floor(Math.random() * 4)
+  meatPastLife.value = pastLifeList[randomIndex]
+}
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+    <div id="app">
+      <h1>肉の前世アプリ</h1>
+      <p>この{{ meatType }}の前世は。。。</p>
+      <h2>{{ meatPastLife }}</h2>
+      <button @click="anotherPastLife">前世を見る</button>
+    </div>
 </template>
 
 <style scoped></style>

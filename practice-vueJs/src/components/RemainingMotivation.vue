@@ -29,11 +29,11 @@ import { ref } from 'vue';
 
 <template>
   <!-- ⑤ アプリ全体のコンテナ -->
-  <div class="appContainar">
+  <div class="appContainer">
     <!-- ⑥ タイトル表示 -->
      <h1>🔋やる気残量あぷり</h1>
     <!-- ⑦ 残量メーター枠 -->
-     <div class="displayMater">
+     <div class="displayMeter">
       <!-- ⑧ 実際に伸び縮みするバー -->
       <!-- ・width は何を元に決めるか -->
       <!-- ・色はどこから来るか -->

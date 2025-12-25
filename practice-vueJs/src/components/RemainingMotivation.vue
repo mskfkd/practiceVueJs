@@ -2,13 +2,13 @@
 // ① Vue から何を import するか
 // ・ユーザー操作で変わる値に必要なもの
 // ・派生状態に必要なもの
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 
 // ② このアプリで「中心になる状態」は何か
 // ・数値の範囲は？
 // ・なぜ ref にするのか
-
+const motivationNum = ref(50); 
 
 
 // ③ 数値から導かれる「表示用の情報」は何か
@@ -16,7 +16,15 @@ import { ref } from 'vue';
 // ・バーの色
 // ・危険状態かどうか
 // → これらはなぜ computed が適しているか
-
+const importStatusDisplay = computed(()=> {
+  if (motivationNum.value >= 70) {
+    return "今ならなんでもできそう";
+  } else if (motivationNum.value >= 30) {
+    return "ご褒美が必要"
+  } else {
+    return "返事がない。しかばねのようだ。"
+  }
+});
 
 
 // ④ 状態分岐の境界値を決める
@@ -40,14 +48,16 @@ import { ref } from 'vue';
       <!-- ・危険時にだけ付く class は何か -->
       <p class="remainingMotivation">やる気残量：■■■□□
       </p>
+    <!-- ⑨ 数値と状態ラベルの表示 -->
+    <!-- ・なぜ直接計算せず、用意した値を表示するのか -->
+      <p>やる気残量：{{ motivationNum }} %</p>
+      <p>状態： {{ importStatusDisplay }}</p>
      </div>
 
   </div>
 
 
 
-    <!-- ⑨ 数値と状態ラベルの表示 -->
-    <!-- ・なぜ直接計算せず、用意した値を表示するのか -->
 
     <!-- ⑩ ユーザー操作部分 -->
     <!-- ・どの値と v-model で結びつくか -->

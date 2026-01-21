@@ -30,7 +30,9 @@ const importStatusDisplay = computed(()=> {
 // ④ 状態分岐の境界値を決める
 // ・高い / 普通 / 低い の基準
 // ・この値を変えると UI にどう影響するか
-
+const motivationWidth = computed(() => {
+  return motivationNum.value + '%';
+});
 
 
 </script>
@@ -46,8 +48,7 @@ const importStatusDisplay = computed(()=> {
       <!-- ・width は何を元に決めるか -->
       <!-- ・色はどこから来るか -->
       <!-- ・危険時にだけ付く class は何か -->
-      <p class="remainingMotivation">やる気残量：■■■□□
-      </p>
+       <div class="meterBar" :style="{ width: motivationNum }"></div>
     <!-- ⑨ 数値と状態ラベルの表示 -->
     <!-- ・なぜ直接計算せず、用意した値を表示するのか -->
       <p>やる気残量：{{ motivationNum }} %</p>
@@ -67,7 +68,16 @@ const importStatusDisplay = computed(()=> {
 
 <style scoped>
 /* ⑪ 常に適用される見た目 */
+.displayMeter {
+  width: 300px;
+  border: 1px solid #ccc;
+}
 
+.meterBar {
+  height: 20px;
+  background-color: green;
+  transition: width 0.3s ease;
+}
 /* ⑫ メーターの枠のスタイル */
 
 /* ⑬ バーの基本スタイル */

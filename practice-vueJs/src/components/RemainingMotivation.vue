@@ -48,7 +48,7 @@ const motivationWidth = computed(() => {
       <!-- ・width は何を元に決めるか -->
       <!-- ・色はどこから来るか -->
       <!-- ・危険時にだけ付く class は何か -->
-       <div class="meterBar" :style="{ width: motivationNum }"></div>
+       <div class="meterBar" :style="{ width: motivationWidth }"></div>
     <!-- ⑨ 数値と状態ラベルの表示 -->
     <!-- ・なぜ直接計算せず、用意した値を表示するのか -->
       <p>やる気残量：{{ motivationNum }} %</p>

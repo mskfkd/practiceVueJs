@@ -34,7 +34,16 @@ const motivationWidth = computed(() => {
   return motivationNum.value + '%';
 });
 
+const motivationColor = computed(() => {
+  if(motivationNum.value >= 70) return 'green';
+  if(motivationNum.value >= 30) return 'orange';
+  if(motivationNum.value >= 20) return 'purple';
+  if(motivationNum.value < 20) return 'red';
+});
 
+const isDanger = computed(() => {
+  return motivationNum.value < 30;
+});
 </script>
 
 <template>
@@ -48,10 +57,11 @@ const motivationWidth = computed(() => {
       <!-- ・width は何を元に決めるか -->
       <!-- ・色はどこから来るか -->
       <!-- ・危険時にだけ付く class は何か -->
-       <div class="meterBar" :style="{ width: motivationWidth }"></div>
+       <div class="meterBar" :class="{ danger: isDanger }" :style="{ width: motivationWidth, backgroundColor: motivationColor }"></div>
     <!-- ⑨ 数値と状態ラベルの表示 -->
     <!-- ・なぜ直接計算せず、用意した値を表示するのか -->
       <p>やる気残量：{{ motivationNum }} %</p>
+      <input type="range" min="0" max="100" v-model="motivationNum">
       <p>状態： {{ importStatusDisplay }}</p>
      </div>
 
@@ -78,13 +88,10 @@ const motivationWidth = computed(() => {
   background-color: green;
   transition: width 0.3s ease;
 }
-/* ⑫ メーターの枠のスタイル */
 
-/* ⑬ バーの基本スタイル */
-/* ・アニメーションを滑らかにする工夫 */
-
-/* ⑭ 危険状態専用のスタイル */
-/* ・なぜ style ではなく class なのか */
+.danger {
+  animation: blank 1s infinite;
+}
 
 /* ⑮ アニメーション定義（任意） */
 </style>
